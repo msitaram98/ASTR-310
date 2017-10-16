@@ -1,0 +1,20 @@
+% Make master darks and flats. 
+ndark = 9;
+d1 = rfits('calib-001-d300s.fit');
+d2 = rfits('calib-002-d300s.fit');
+d3 = rfits('calib-003-d300s.fit');
+d4 = rfits('calib-004-d300s.fit');
+d5 = rfits('calib-005-d300s.fit');
+d6 = rfits('calib-006-d300s.fit');
+d7 = rfits('calib-007-d300s.fit');
+d8 = rfits('calib-008-d300s.fit');
+d9 = rfits('calib-009-d300s.fit');
+darks = [d1.data d2.data d3.data d4.data d5.data d6.data d7.data d8.data d9.data];
+dark = d1.data;
+
+for i=2:ndark
+    disp(i);
+    dark(:, :, i) = darks(i);
+end 
+
+mdark = median(dark)
